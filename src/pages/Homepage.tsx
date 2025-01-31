@@ -1,5 +1,13 @@
+import Form from '../features/Form';
+import Main from '../ui/Main';
+
 function Homepage() {
-  return <div>Homepage</div>;
+  return (
+    <div>
+      <Form />
+      <Main />
+    </div>
+  );
 }
 
 export default Homepage;

@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wdth,wght,YTLC@0,6..12,75..125,200..1000,440..540;1,6..12,75..125,200..1000,440..540&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    @apply text-[62.5%] box-border m-0 p-0;
+    @apply m-0 box-border p-0 text-[62.5%];
   }
 }
