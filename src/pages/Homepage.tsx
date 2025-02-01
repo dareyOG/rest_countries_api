@@ -1,5 +1,5 @@
-import Form from '../features/Form';
-import Main from '../ui/Main';
+import Form from "../features/Form";
+import Main from "../ui/Main";
 
 function Homepage() {
   return (

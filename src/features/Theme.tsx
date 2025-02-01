@@ -1,5 +1,9 @@
 function Theme() {
-  return <div>Theme</div>;
+  return (
+    <div className="capitalize">
+      🌙<span>dark mode</span>{" "}
+    </div>
+  );
 }
 
 export default Theme;

@@ -1,9 +1,9 @@
-import Theme from '../features/Theme';
+import Theme from "../features/Theme";
 
 function Header() {
   return (
-    <div className="flex justify-between items-center bg-white">
-      <h1>Where in the world?</h1>
+    <div className="flex items-center justify-between border-2 border-transparent bg-white px-[6rem] py-12 text-[1.8rem]">
+      <h1 className="font-bold">Where in the world?</h1>
       <Theme />
     </div>
   );

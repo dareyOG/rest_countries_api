@@ -1,6 +1,6 @@
 function Detail() {
   return (
-    <section>
+    <section className="text-[1.6rem]">
       <button>🔙Back</button>
       <div className="">
         <img />

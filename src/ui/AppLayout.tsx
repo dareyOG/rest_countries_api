@@ -1,12 +1,12 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
-import Header from './Header';
+import Header from "./Header";
 
 function AppLayout() {
   return (
-    <div>
+    <div className="">
       <Header />
-      <main>
+      <main className="bg-gray-50 px-[6rem]">
         <Outlet />
       </main>
     </div>
