@@ -1,4 +1,4 @@
-function Detail() {
+function CountryDetail() {
   return (
     <section className="text-[1.6rem]">
       <button>🔙Back</button>
@@ -32,4 +32,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default CountryDetail;

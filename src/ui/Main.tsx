@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Countries } from "../types";
+
 import Country from "./Country";
 
 function Main() {
@@ -7,7 +8,7 @@ function Main() {
 
   useEffect(() => {
     const renderCountries = async () => {
-      const countriesRes = await fetch("/public/data/data.json");
+      const countriesRes = await fetch("/data/data.json");
       const countriesData = await countriesRes.json();
       const { countries } = countriesData;
       setCountries(countries);
