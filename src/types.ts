@@ -1,16 +1,17 @@
-export type Countries = {}[];
-
 export type CountryProps = {
-  name: string;
+  name: { [key: string]: string };
   population: number;
   region: string;
-  capital: string;
-  flags: { svg: string; png: string };
+  capital: string[];
+  flags: { [key: string]: string };
+  alt: string;
+};
+
+export type Countries = CountryProps[];
+
+export type ContextType = {
+  countries: Countries;
+  isLoading: boolean;
 };
 
 export type FormInput = string;
-
-export type ContextType = {
-  countries: {}[];
-  isLoading: boolean;
-};

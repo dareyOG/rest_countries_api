@@ -1,12 +1,12 @@
-import { createContext, useEffect, useState } from "react";
-import { ContextType } from "../types";
+import { createContext, useContext, useEffect, useState } from "react";
+import { ContextType, Countries } from "../types";
 
 const CountriesContext = createContext<ContextType | null>(null);
 
 const baseURL = "https://restcountries.com/v3.1";
 
 function CountriesProvider({ children }: { children: React.ReactNode }) {
-  const [countries, setCountries] = useState<Array<{}>>([]);
+  const [countries, setCountries] = useState<Countries>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(function () {
@@ -15,7 +15,15 @@ function CountriesProvider({ children }: { children: React.ReactNode }) {
       try {
         const countriesRes = await fetch(`${baseURL}/all`);
         const countriesData = await countriesRes.json();
-        setCountries(countriesData);
+
+        const sortedCountries = countriesData.sort(
+          (
+            country1: { name: { common: string } },
+            country2: { name: { common: string } },
+          ) => country1.name.common.localeCompare(country2.name.common),
+        );
+
+        setCountries(sortedCountries);
       } catch (error) {
         if (error) throw new Error("Error fetching data");
       } finally {
@@ -32,11 +40,11 @@ function CountriesProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* function useCountries() {
-  const context = createContext(CountriesContext);
+function useCountries() {
+  const context = useContext(CountriesContext);
   console.log(context);
   if (!context) throw new Error("context is out of scope");
   return context;
-} */
+}
 
-export { CountriesProvider, CountriesContext };
+export { CountriesProvider, useCountries };
