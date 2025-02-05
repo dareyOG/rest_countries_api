@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom";
 
 import Header from "./Header";
+import Main from "./Main";
 
 function AppLayout() {
   return (
-    <div className="">
+    <div>
       <Header />
-      <main className="bg-gray-50 px-[6rem]">
+      <Main>
         <Outlet />
-      </main>
+      </Main>
     </div>
   );
 }

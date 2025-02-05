@@ -1,35 +1,33 @@
 function CountryDetail() {
-  return (
-    <section className="text-[1.6rem]">
+  return <div>COUNTRY DETAILS</div>;
+}
+
+export default CountryDetail;
+
+/*  <section className="text-[1.6rem]">
       <button>🔙Back</button>
       <div className="">
         <img />
         <div className="">
-          <h1>Belgium</h1>
+          <h1>{country?.name}</h1>
           <div className="">
-            <p>Native Name: Belgie</p>
-            <p>Population:11,319,511</p>
-            <p>Region:Europe</p>
-            <p>Sub Region:Western Europe</p>
-            <p>capital: Brussels</p>
+            <p>Native Name: {country.nativeName}</p>
+            <p>Population:{country.population}</p>
+            <p>Region:{country.region}</p>
+            <p>Sub Region:{country.subregion}</p>
+            <p>capital: {country.capital}</p>
           </div>
         </div>
         <div className="">
-          <p>Top Level Domain:be</p>
-          <p>Currencies:Euro</p>
-          <p>Languages:Dutch, French, German</p>
+          <p>Top Level Domain:{country.topLevelDomain.at(0)}</p>
+          <p>Currencies:{country.currencies.at(0).name}</p>
+          <p>
+            Languages:{" "}
+            {country.languages.map((language) => language.name).join(", ")}
+          </p>
         </div>
         <div className="">
-          <h2>Border Countries</h2>
-          <div className="">
-            <span>France</span>
-            <span>Germany</span>
-            <span>Netherlands</span>
-          </div>
+          <div>Border Countries:</div>
         </div>
       </div>
-    </section>
-  );
-}
-
-export default CountryDetail;
+    </section> */

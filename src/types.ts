@@ -1,4 +1,6 @@
-export type Country = {
+export type Countries = {}[];
+
+export type CountryProps = {
   name: string;
   population: number;
   region: string;
@@ -6,4 +8,9 @@ export type Country = {
   flags: { svg: string; png: string };
 };
 
-export type Countries = Country[];
+export type FormInput = string;
+
+export type ContextType = {
+  countries: {}[];
+  isLoading: boolean;
+};
