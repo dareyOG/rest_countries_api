@@ -2,10 +2,10 @@ import Theme from "../features/Theme";
 
 function Header() {
   return (
-    <div className="flex items-center justify-between border-2 border-transparent bg-white px-[6rem] py-[3rem] text-[1.8rem]">
-      <h1 className="font-bold">Where in the world?</h1>
+    <header className="flex h-auto items-center justify-between border-b-2 border-gray-50 bg-white px-24 py-8 shadow-md">
+      <h1 className="w-fit text-[2rem] font-bold">Where in the world?</h1>
       <Theme />
-    </div>
+    </header>
   );
 }
 

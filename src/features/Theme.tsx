@@ -1,8 +1,10 @@
 function Theme() {
+  const handleToggleTheme = () => {};
   return (
-    <div className="capitalize">
-      🌙<span>dark mode</span>{" "}
-    </div>
+    <button className="text-[1.5rem] capitalize" onClick={handleToggleTheme}>
+      <span>🌜</span>
+      <span>dark mode</span>
+    </button>
   );
 }
 

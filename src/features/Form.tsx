@@ -1,24 +1,18 @@
 import { useState } from "react";
 import { FormInput } from "../types";
+import SearchBar from "../ui/SearchBar";
 
 function Form() {
-  const [query, setQuery] = useState<FormInput>("");
   const [region, setRegion] = useState<FormInput>("");
 
   return (
-    <form className="flex flex-col content-start gap-12 py-12 text-[1.5rem] md:flex-row md:justify-between">
-      <input
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        type="text"
-        placeholder="Search for a country..."
-        className="w-full rounded-[0.5rem] border border-transparent px-10 py-5 focus:outline-none focus:ring-2 focus:ring-blue-200 md:w-auto"
-      />
+    <form className="flex flex-col content-start gap-12 pb-[4rem] text-[1.5rem] md:flex-row md:justify-between">
+      <SearchBar />
 
       <select
         value={region}
         onChange={(e) => setRegion(e.target.value)}
-        className="w-1/2 rounded-[0.8rem] border-transparent px-8 py-4 md:w-2/12"
+        className="w-1/2 rounded-[0.8rem] border-transparent px-8 py-4 focus:outline-none focus:ring-0 md:w-auto"
       >
         <option value="">Filter by Region</option>
         <option value="Africa">Africa</option>

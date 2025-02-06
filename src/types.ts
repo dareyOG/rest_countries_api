@@ -3,8 +3,14 @@ export type CountryProps = {
   population: number;
   region: string;
   capital: string[];
+  altSpellings: string[];
   flags: { [key: string]: string };
-  alt: string;
+  tld: string[];
+  currencies: { [key: string]: string };
+  languages: { [key: string]: string };
+  borders: string[];
+  cca3: string;
+  subregion: string;
 };
 
 export type Countries = CountryProps[];

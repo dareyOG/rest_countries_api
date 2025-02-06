@@ -5,12 +5,12 @@ import Main from "./Main";
 
 function AppLayout() {
   return (
-    <div>
+    <Main>
       <Header />
-      <Main>
+      <section>
         <Outlet />
-      </Main>
-    </div>
+      </section>
+    </Main>
   );
 }
 

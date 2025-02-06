@@ -5,6 +5,7 @@ import AppLayout from "./ui/AppLayout";
 import Countries from "./pages/Countries";
 import CountryDetail from "./pages/CountryDetail";
 import PageNotFound from "./pages/PageNotFound";
+
 import { CountriesProvider } from "./context/CountriesContext";
 
 function App() {

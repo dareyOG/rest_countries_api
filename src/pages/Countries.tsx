@@ -4,14 +4,18 @@ import Country from "../ui/Country";
 
 function Countries() {
   const { countries } = useCountries();
+
+  const sortedCountries = countries.sort((country1, country2) =>
+    country1.name.common.localeCompare(country2.name.common),
+  );
+
   return (
-    <div>
+    <div className="px-[6rem] py-[4rem]">
       <Form />
       <section className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[6rem]">
-        {countries.map((country) => (
-          <Country country={country} key={country.alt} />
+        {sortedCountries.map((country) => (
+          <Country country={country} key={country.name.common} />
         ))}
-        countries
       </section>
     </div>
   );
