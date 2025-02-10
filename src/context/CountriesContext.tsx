@@ -1,15 +1,17 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { ContextType, Countries } from "../types";
+import { createContext, useContext, useState } from "react";
+import { ContextType } from "../types";
+import { countries } from "../../public/data/data";
 
 const CountriesContext = createContext<ContextType | null>(null);
 
-const baseURL = "https://restcountries.com/v3.1";
+// const baseURL = "https://restcountries.com/v3.1";
 
 function CountriesProvider({ children }: { children: React.ReactNode }) {
-  const [countries, setCountries] = useState<Countries>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, _setIsLoading] = useState(false);
 
-  useEffect(function () {
+  // console.log(countries);
+
+  /*  useEffect(function () {
     async function loadCountries() {
       setIsLoading(true);
       try {
@@ -24,7 +26,9 @@ function CountriesProvider({ children }: { children: React.ReactNode }) {
       }
     }
     loadCountries();
-  }, []);
+  }, []); */
+
+  // search countries
 
   return (
     <CountriesContext.Provider value={{ countries, isLoading }}>

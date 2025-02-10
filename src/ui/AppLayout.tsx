@@ -7,9 +7,9 @@ function AppLayout() {
   return (
     <Main>
       <Header />
-      <section>
+      <>
         <Outlet />
-      </section>
+      </>
     </Main>
   );
 }

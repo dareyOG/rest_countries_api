@@ -6,20 +6,32 @@ function Form() {
   const [region, setRegion] = useState<FormInput>("");
 
   return (
-    <form className="flex flex-col content-start gap-12 pb-[4rem] text-[1.5rem] md:flex-row md:justify-between">
+    <form className="flex flex-col gap-12 pb-[4rem] text-[1.5rem] md:justify-between lg:flex-row">
       <SearchBar />
 
       <select
         value={region}
         onChange={(e) => setRegion(e.target.value)}
-        className="w-1/2 rounded-[0.8rem] border-transparent px-8 py-4 focus:outline-none focus:ring-0 md:w-auto"
+        className="w-[65%] rounded-[0.8rem] border-transparent px-8 py-4 focus:outline-none focus:ring-1 focus:ring-gray-100 lg:w-[25%]"
       >
-        <option value="">Filter by Region</option>
-        <option value="Africa">Africa</option>
-        <option value="America">America</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="Oceania">Oceania</option>
+        <option value="" className="text-[1.1rem] md:text-[1.6rem]">
+          Filter by Region
+        </option>
+        <option value="Africa" className="text-[1.1rem] md:text-[1.6rem]">
+          Africa
+        </option>
+        <option value="America" className="text-[1.1rem] md:text-[1.6rem]">
+          America
+        </option>
+        <option value="Asia" className="text-[1.1rem] md:text-[1.6rem]">
+          Asia
+        </option>
+        <option value="Europe" className="text-[1.1rem] md:text-[1.6rem]">
+          Europe
+        </option>
+        <option value="Oceania" className="text-[1.1rem] md:text-[1.6rem]">
+          Oceania
+        </option>
       </select>
     </form>
   );

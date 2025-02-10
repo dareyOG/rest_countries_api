@@ -1,16 +1,29 @@
 export type CountryProps = {
-  name: { [key: string]: string };
+  name: string;
   population: number;
   region: string;
-  capital: string[];
+  capital: string;
   altSpellings: string[];
-  flags: { [key: string]: string };
-  tld: string[];
-  currencies: { [key: string]: string };
-  languages: { [key: string]: string };
+  flag: string;
+  flags: { svg: string; png: string };
+  topLevelDomain: string[];
+  currencies: { name: string; code: string; symbol: string }[];
+  languages: {}[];
   borders: string[];
-  cca3: string;
+  cioc: string;
+  alpha2Code: string;
+  alpha3Code: string;
   subregion: string;
+  translations: {};
+  regionalBlocs: {}[];
+  independent: boolean;
+  callingCodes: string[];
+  latlng: number[];
+  demonym: string;
+  area: number;
+  timezones: string[];
+  nativeName: string;
+  numericCode: string;
 };
 
 export type Countries = CountryProps[];

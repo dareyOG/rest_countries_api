@@ -3,16 +3,17 @@ import { CountryProps } from "../types";
 import { formatNumber } from "../utils/help";
 
 function Country({ country }: { country: CountryProps }) {
+  console.log(country);
   return (
-    <Link to={`/countries/${country.name.common}`}>
-      <div className="grid-rows-[auto, 1fr] grid w-auto cursor-pointer gap-8 rounded-[0.8rem] border border-transparent bg-white transition-all duration-300 md:shadow-[0_0_2.5px_0] md:shadow-gray-50 md:hover:shadow-[0_2px_10px_0] md:hover:shadow-gray-100">
+    <Link to={`/countries/${country.name}`}>
+      <div className="grid-rows-[auto, 1fr] grid w-auto cursor-pointer gap-8 rounded-[0.8rem] border border-transparent bg-white transition-all duration-500 md:shadow-md md:hover:shadow-[0_2.5px_5px_0] md:hover:shadow-gray-100">
         <img
           src={country.flags.svg}
-          alt={`flag of ${country.altSpellings.at(1)}`}
-          className="h-[16rem] w-full rounded-t-[0.8rem] object-cover"
+          alt={`flag of ${country.altSpellings}`}
+          className="h-[15rem] w-full rounded-t-[0.8rem] object-cover"
         />
         <div className="grid-rows-[auto, 1fr] grid gap-8 px-10 pb-16 text-[1.4rem]">
-          <h1 className="font-bold">{country.name.common}</h1>
+          <h1 className="font-bold">{country.name}</h1>
           <div className="font-semibold">
             <p className="space-x-2">
               <span>Population:</span>
@@ -26,7 +27,7 @@ function Country({ country }: { country: CountryProps }) {
             </p>
             <p className="space-x-2">
               <span>Capital:</span>
-              <span className="font-normal">{country.capital?.at(0)}</span>
+              <span className="font-normal">{country.capital}</span>
             </p>
           </div>
         </div>
