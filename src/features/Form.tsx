@@ -1,17 +1,34 @@
 import { useState } from "react";
 import { FormInput } from "../types";
-import SearchBar from "../ui/SearchBar";
+// import SearchBar from "../ui/SearchBar";
+import { useCountries } from "../context/CountriesContext";
 
 function Form() {
+  const { isLoading } = useCountries();
+  const [query, setQuery] = useState<FormInput>("");
   const [region, setRegion] = useState<FormInput>("");
+  console.log(isLoading);
 
   return (
     <form className="flex flex-col gap-12 pb-[4rem] text-[1.5rem] md:justify-between lg:flex-row">
-      <SearchBar />
+      <div className="relative flex items-center border-blue-100">
+        <span className="absolute left-[1.5rem] z-10">🔍</span>
+        <input
+          type="text"
+          value={query}
+          disabled={isLoading}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search for a country..."
+          className="w-full rounded-[0.5rem] border border-transparent px-[4rem] py-[1.5rem] shadow-md transition-all duration-500 focus:outline-none focus:ring-0 focus:ring-gray-100 lg:focus:w-[40rem]"
+        />
+      </div>
+
+      {/* <SearchBar /> */}
 
       <select
         value={region}
         onChange={(e) => setRegion(e.target.value)}
+        disabled={isLoading}
         className="w-[65%] rounded-[0.8rem] border-transparent px-8 py-4 focus:outline-none focus:ring-1 focus:ring-gray-100 lg:w-[25%]"
       >
         <option value="" className="text-[1.1rem] md:text-[1.6rem]">
@@ -38,20 +55,3 @@ function Form() {
 }
 
 export default Form;
-
-{
-  /* <div className="">
-<div className="border-transparent relative w-[50%] rounded-[0.5rem] border border-blue-100 bg-white px-8 py-5 md:w-auto">
-  <div className="flex w-full cursor-pointer items-center justify-between gap-16">
-    <span>Filter by Region</span>
-    <span>🔽</span>
-  </div>
-  <ul className="absolute mt-4 bg-white">
-    <Region />
-    <Region />
-    <Region />
-    <Region />
-  </ul>
-</div>
-</div> */
-}

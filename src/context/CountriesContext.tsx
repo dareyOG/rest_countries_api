@@ -1,24 +1,19 @@
-import { createContext, useContext, useState } from "react";
-import { ContextType } from "../types";
-import { countries } from "../../public/data/data";
+import { createContext, useContext, useEffect, useState } from "react";
+import { ContextType, Countries } from "../types";
+// import { countriesData as data } from "../../public/data/data";
 
 const CountriesContext = createContext<ContextType | null>(null);
 
-// const baseURL = "https://restcountries.com/v3.1";
-
 function CountriesProvider({ children }: { children: React.ReactNode }) {
-  const [isLoading, _setIsLoading] = useState(false);
+  const [countries, setCountries] = useState<Countries>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // console.log(countries);
-
-  /*  useEffect(function () {
+  /*   useEffect(function () {
     async function loadCountries() {
       setIsLoading(true);
       try {
-        const countriesRes = await fetch(`${baseURL}/all`);
-        const countriesData = await countriesRes.json();
-
-        setCountries(countriesData);
+        const countriesRes = data;
+        setCountries(countriesRes);
       } catch (error) {
         if (error) throw new Error("Error fetching data");
       } finally {
@@ -28,7 +23,26 @@ function CountriesProvider({ children }: { children: React.ReactNode }) {
     loadCountries();
   }, []); */
 
-  // search countries
+  useEffect(
+    function () {
+      async function loadCountries() {
+        setIsLoading(true);
+        try {
+          const countriesRes = await fetch(
+            `https://restcountries.com/v3.1/all`,
+          );
+          const countriesData = countriesRes.json();
+          setCountries(await countriesData);
+        } catch (error) {
+          if (error) throw new Error("Error fetching data");
+        } finally {
+          setIsLoading(false);
+        }
+      }
+      loadCountries();
+    },
+    [setCountries, setIsLoading],
+  );
 
   return (
     <CountriesContext.Provider value={{ countries, isLoading }}>

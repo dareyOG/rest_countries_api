@@ -1,4 +1,4 @@
-export type CountryProps = {
+/* export type CountryProps = {
   name: string;
   population: number;
   region: string;
@@ -24,6 +24,48 @@ export type CountryProps = {
   timezones: string[];
   nativeName: string;
   numericCode: string;
+}; */
+
+export type CountryProps = {
+  name: {
+    common: string;
+    official: string;
+    nativeName: { [key: string]: { common: string; official: string } };
+  };
+  tld: string[];
+  cca2: string;
+  ccn3: string;
+  cca3: string;
+  cioc: string;
+  independent: boolean;
+  status: string;
+  unMember: boolean;
+  currencies: { [key: string]: { name: string; symbol: string } };
+  idd: {};
+  capital: [];
+  altSpellings: [];
+  borders: [];
+  region: string;
+  subregion: string;
+  postalCode: {};
+  languages: {};
+  translations: {};
+  latlng: number[];
+  landlocked: boolean;
+  area: number;
+  demonyms: {};
+  flag: string;
+  gini: {};
+  fifa: string;
+  maps: { googleMaps: string; openStreetMaps: string };
+  population: number;
+  car: {};
+  timezones: string[];
+  continents: string[];
+  flags: { png: string; svg: string };
+  coatOfArms: { png: string; svg: string };
+  startOfWeek: string;
+  capitalInfo: { latlng: number[] };
 };
 
 export type Countries = CountryProps[];
@@ -34,3 +76,8 @@ export type ContextType = {
 };
 
 export type FormInput = string;
+
+export type Theme = {
+  light: string;
+  dark: string;
+};
