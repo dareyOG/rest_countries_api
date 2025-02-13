@@ -73,6 +73,7 @@ export type Countries = CountryProps[];
 export type ContextType = {
   countries: Countries;
   isLoading: boolean;
+  isError: boolean;
 };
 
 export type FormInput = string;

@@ -2,7 +2,7 @@ import { LineWave } from "react-loader-spinner";
 
 function Loader() {
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex min-h-full items-center justify-center">
       <LineWave
         visible={true}
         height="100"
