@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCountries } from "../context/CountriesContext";
 import Border from "../ui/Border";
 import { formatNumber } from "../utils/help";
+import { HiArrowLongLeft } from "react-icons/hi2";
 
 function CountryDetail() {
   const { countries, theme } = useCountries();
@@ -27,7 +28,7 @@ function CountryDetail() {
         onClick={handleClick}
         className={`flex max-w-fit items-center gap-x-3 rounded-md ${theme === "light" ? "bg-gray-50 text-gray-100 hover:bg-gray-100 hover:text-gray-50 hover:shadow-gray-100" : "bg-blue-50 text-gray-50 hover:bg-gray-50 hover:text-blue-50"} px-[2rem] py-[0.5rem] shadow-md transition-all duration-300 ease-linear`}
       >
-        <span className="">&larr;</span>
+        <HiArrowLongLeft />
         <span className="text-[1.2rem]">Back</span>
       </button>
       <div
@@ -36,7 +37,6 @@ function CountryDetail() {
         <img
           src={country?.flags.svg}
           alt={`flag of ${country?.name.common}`}
-          // min-w-full object-cover md:h-[35rem] md:w-[25rem]
           className="w-auto object-cover lg:max-h-[35rem] lg:max-w-[50rem]"
         />
         <div className="flex flex-col gap-[4.5rem] md:py-[3.5rem]">
@@ -50,9 +50,9 @@ function CountryDetail() {
                 <span
                   className={`${theme === "light" ? "" : "text-gray-100"} font-normal`}
                 >
-                  {Object.values(Object.values(country?.name).at(-1))
-                    .map((name) => name.common)
-                    .at(0)}
+                  {Object.values(Object?.values(country?.name)?.at(-1))
+                    ?.map((name) => name.common)
+                    ?.at(0)}
                 </span>
               </p>
               <p className="space-x-4">

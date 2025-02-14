@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FormInput } from "../types";
 // import SearchBar from "../ui/SearchBar";
 import { useCountries } from "../context/CountriesContext";
+import { HiMagnifyingGlass } from "react-icons/hi2";
 
 function Form() {
   const { isLoading, theme } = useCountries();
@@ -11,15 +12,19 @@ function Form() {
 
   return (
     <form className="flex flex-col gap-12 pb-[4rem] text-[1.5rem] md:justify-between lg:flex-row">
-      <div className="relative flex items-center">
-        <span className="absolute left-[1.5rem] z-10">🔍</span>
+      <div
+        className={`relative flex items-center ${theme === "light" ? "" : "text-gray-50"} `}
+      >
+        <span className="absolute left-[1.5rem] z-10">
+          <HiMagnifyingGlass />
+        </span>
         <input
           type="text"
           value={query}
           disabled={isLoading}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for a country..."
-          className={`w-full rounded-[0.5rem] border border-transparent ${theme === "light" ? "" : "bg-blue-50 text-gray-50 placeholder:text-gray-50"} px-[4rem] py-[1.5rem] shadow-md transition-all duration-500 focus:outline-none focus:ring-0 focus:ring-gray-100 lg:focus:w-[40rem]`}
+          className={`w-full rounded-[0.5rem] border border-transparent ${theme === "light" ? "" : "bg-blue-50 placeholder:text-gray-50"} px-[4rem] py-[1.5rem] shadow-md transition-all duration-500 focus:outline-none focus:ring-0 focus:ring-gray-100 lg:focus:w-[40rem]`}
         />
       </div>
 
