@@ -9,7 +9,7 @@ function CountryDetail() {
   const { countryName } = useParams();
 
   // search country
-  const country = countries.find(
+  const country = countries?.find(
     (country) => country.name.common === countryName,
   );
 
@@ -22,7 +22,7 @@ function CountryDetail() {
   // bg-gray-50
 
   return (
-    <section className="flex max-h-fit flex-col gap-[3rem] px-[6rem] py-[4rem]">
+    <section className="flex h-screen flex-col gap-[3rem] px-[6rem] py-[4rem]">
       <button
         onClick={handleClick}
         className="flex max-w-fit items-center gap-x-3 rounded-md bg-white px-[2rem] py-[0.5rem] text-gray-100 shadow-md transition-all duration-300 ease-linear hover:bg-gray-100 hover:text-gray-50 hover:shadow-gray-100"
@@ -35,10 +35,10 @@ function CountryDetail() {
           src={country?.flags.svg}
           alt={`flag of ${country?.name.common}`}
           // min-w-full object-cover md:h-[35rem] md:w-[25rem]
-          className="w-auto object-cover md:w-[25rem]"
+          className="w-auto object-cover lg:max-h-[35rem] lg:max-w-[50rem]"
         />
         <div className="flex flex-col gap-[4.5rem] md:py-[3.5rem]">
-          <h2 className="max-w-fit text-[2rem] font-bold md:text-[3rem]">
+          <h2 className="max-w-fit text-[2rem] font-bold md:text-[3rem] lg:text-start">
             {country?.name.common}
           </h2>
           <div className="flex flex-col gap-[3rem] text-nowrap text-[1.4rem] font-bold md:flex-row">

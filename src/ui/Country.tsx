@@ -3,7 +3,6 @@ import { CountryProps } from "../types";
 import { formatNumber } from "../utils/help";
 
 function Country({ country }: { country: CountryProps }) {
-  // console.log(country);
   return (
     <Link to={`/countries/${country.name.common}`}>
       <div className="grid-rows-[auto, 1fr] grid w-auto cursor-pointer gap-8 rounded-[0.8rem] border border-transparent bg-white transition-all duration-500 md:shadow-md md:hover:shadow-lg md:hover:shadow-gray-100">

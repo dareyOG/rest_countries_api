@@ -74,11 +74,10 @@ export type ContextType = {
   countries: Countries;
   isLoading: boolean;
   isError: boolean;
+  theme: string;
+  handleToggleTheme: () => void;
 };
 
 export type FormInput = string;
 
-export type Theme = {
-  light: string;
-  dark: string;
-};
+export type ThemeProps = "light" | "dark";

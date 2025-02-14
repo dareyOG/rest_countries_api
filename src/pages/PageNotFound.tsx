@@ -1,7 +1,11 @@
+import { useCountries } from "../context/CountriesContext";
+
 function PageNotFound() {
+  const { isError } = useCountries();
+
   return (
-    <div className="bg-gray-50 flex h-screen items-center justify-center capitalize text-gray-100">
-      ⚠️ page not found
+    <div className="flex h-screen items-center justify-center bg-gray-50 capitalize text-gray-100">
+      ⚠️ {isError ? `failed in fetching countries` : ` page not found`}
     </div>
   );
 }

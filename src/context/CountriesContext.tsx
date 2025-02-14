@@ -1,14 +1,22 @@
-import { createContext, useContext } from "react";
-import { ContextType } from "../types";
+import { createContext, useContext, useState } from "react";
+import { ContextType, ThemeProps } from "../types";
 import { getCountries } from "../services/useGetCountries";
 
 const CountriesContext = createContext<ContextType | null>(null);
 
 function CountriesProvider({ children }: { children: React.ReactNode }) {
   const { data: countries, isError, isLoading } = getCountries();
+  const [theme, setTheme] = useState<ThemeProps>("light");
+
+  const handleToggleTheme = () => {
+    setTheme((theme) => (theme === "light" ? "dark" : "light"));
+    console.log(theme);
+  };
 
   return (
-    <CountriesContext.Provider value={{ countries, isLoading, isError }}>
+    <CountriesContext.Provider
+      value={{ countries, isLoading, isError, theme, handleToggleTheme }}
+    >
       {children}
     </CountriesContext.Provider>
   );
