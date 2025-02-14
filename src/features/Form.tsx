@@ -4,14 +4,14 @@ import { FormInput } from "../types";
 import { useCountries } from "../context/CountriesContext";
 
 function Form() {
-  const { isLoading } = useCountries();
+  const { isLoading, theme } = useCountries();
   const [query, setQuery] = useState<FormInput>("");
   const [region, setRegion] = useState<FormInput>("");
   console.log(isLoading);
 
   return (
     <form className="flex flex-col gap-12 pb-[4rem] text-[1.5rem] md:justify-between lg:flex-row">
-      <div className="relative flex items-center border-blue-100">
+      <div className="relative flex items-center">
         <span className="absolute left-[1.5rem] z-10">🔍</span>
         <input
           type="text"
@@ -19,7 +19,7 @@ function Form() {
           disabled={isLoading}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for a country..."
-          className="w-full rounded-[0.5rem] border border-transparent px-[4rem] py-[1.5rem] shadow-md transition-all duration-500 focus:outline-none focus:ring-0 focus:ring-gray-100 lg:focus:w-[40rem]"
+          className={`w-full rounded-[0.5rem] border border-transparent ${theme === "light" ? "" : "bg-blue-50 text-gray-50 placeholder:text-gray-50"} px-[4rem] py-[1.5rem] shadow-md transition-all duration-500 focus:outline-none focus:ring-0 focus:ring-gray-100 lg:focus:w-[40rem]`}
         />
       </div>
 
@@ -29,7 +29,7 @@ function Form() {
         value={region}
         onChange={(e) => setRegion(e.target.value)}
         disabled={isLoading}
-        className="w-[65%] rounded-[0.8rem] border-transparent px-8 py-4 focus:outline-none focus:ring-1 focus:ring-gray-100 lg:w-[25%]"
+        className={`w-[65%] rounded-[0.8rem] border-transparent ${theme === "light" ? "" : "bg-blue-50 text-gray-50"} px-8 py-4 focus:outline-none focus:ring-1 focus:ring-gray-100 lg:w-[25%]`}
       >
         <option value="" className="text-[1.1rem] md:text-[1.6rem]">
           Filter by Region

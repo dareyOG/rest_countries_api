@@ -1,7 +1,14 @@
+import { useCountries } from "../context/CountriesContext";
+
 function Main({ children }: { children: React.ReactNode }) {
-  return <main className="h-full bg-blue-200">{children}</main>;
+  const { theme } = useCountries();
+  return (
+    <main
+      className={`h-full ${theme === "light" ? "bg-gray-50" : "bg-blue-100"}`}
+    >
+      {children}
+    </main>
+  );
 }
 
 export default Main;
-
-// bg-gray-50
