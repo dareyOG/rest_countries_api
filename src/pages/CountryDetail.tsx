@@ -1,11 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useCountries } from "../context/CountriesContext";
+import { useCountries, useTheme } from "../hooks/CustomHooks";
+
 import Border from "../ui/Border";
+
 import { formatNumber } from "../utils/help";
 import { HiArrowLongLeft } from "react-icons/hi2";
 
 function CountryDetail() {
-  const { countries, theme } = useCountries();
+  const { countries } = useCountries();
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const { countryName } = useParams();
 
@@ -18,8 +21,6 @@ function CountryDetail() {
     // navigate(-1);
     navigate("/countries");
   };
-
-  console.log(country);
 
   return (
     <section className="flex h-screen flex-col gap-[3rem] px-[6rem] py-[4rem]">

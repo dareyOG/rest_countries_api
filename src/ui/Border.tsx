@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { useCountries } from "../context/CountriesContext";
+import { useCountries, useTheme } from "../hooks/CustomHooks";
 
 function Border({ border }: { border: string }) {
-  const { countries, theme } = useCountries();
+  const { countries } = useCountries();
+  const { theme } = useTheme();
 
   // search border country
   const borderCountry = countries.find((country) => country.cca3 === border);

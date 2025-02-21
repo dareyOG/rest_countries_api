@@ -1,4 +1,4 @@
-import { useCountries } from "../context/CountriesContext";
+import { useCountries } from "../hooks/CustomHooks";
 
 function PageNotFound() {
   const { isError } = useCountries();

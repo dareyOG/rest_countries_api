@@ -1,30 +1,17 @@
-import { createContext, useContext, useState } from "react";
-import { ContextType, ThemeProps } from "../types";
-import { getCountries } from "../services/useGetCountries";
+import { createContext } from "react";
+import { CountriesContextType } from "../types";
+import { useGetCountries } from "../hooks/CustomHooks";
 
-const CountriesContext = createContext<ContextType | null>(null);
+const CountriesContext = createContext<CountriesContextType | null>(null);
 
 function CountriesProvider({ children }: { children: React.ReactNode }) {
-  const { data: countries, isError, isLoading } = getCountries();
-  const [theme, setTheme] = useState<ThemeProps>("light");
-
-  const handleToggleTheme = () => {
-    setTheme((theme) => (theme === "light" ? "dark" : "light"));
-  };
+  const { data: countries, isError, isLoading } = useGetCountries();
 
   return (
-    <CountriesContext.Provider
-      value={{ countries, isLoading, isError, theme, handleToggleTheme }}
-    >
+    <CountriesContext.Provider value={{ countries, isLoading, isError }}>
       {children}
     </CountriesContext.Provider>
   );
 }
 
-function useCountries() {
-  const context = useContext(CountriesContext);
-  if (!context) throw new Error("context is out of scope");
-  return context;
-}
-
-export { CountriesProvider, useCountries };
+export { CountriesProvider, CountriesContext };

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { useCountries } from "../context/CountriesContext";
+import { useTheme } from "../hooks/CustomHooks";
 import { formatNumber } from "../utils/help";
 import { CountryProps } from "../types";
 
 function Country({ country }: { country: CountryProps }) {
-  const { theme } = useCountries();
+  const { theme } = useTheme();
   return (
     <Link to={`/countries/${country.name.common}`}>
       <div

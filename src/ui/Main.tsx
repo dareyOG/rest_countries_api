@@ -1,7 +1,7 @@
-import { useCountries } from "../context/CountriesContext";
+import { useTheme } from "../hooks/CustomHooks";
 
 function Main({ children }: { children: React.ReactNode }) {
-  const { theme } = useCountries();
+  const { theme } = useTheme();
   return (
     <main
       className={`h-full ${theme === "light" ? "bg-gray-50" : "bg-blue-100"}`}

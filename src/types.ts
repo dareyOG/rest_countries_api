@@ -72,16 +72,19 @@ export type CountryProps = {
 
 export type Countries = CountryProps[];
 
-export type ContextType = {
+export type ThemeProps = "light" | "dark";
+
+export type CountriesContextType = {
   countries: Countries;
   isLoading: boolean;
   isError: boolean;
-  theme: string;
+};
+
+export type ThemeContextType = {
+  theme: ThemeProps;
   handleToggleTheme: () => void;
 };
 
 export type FormInput = string;
 
-export type EventProps = React.ChangeEvent;
-
-export type ThemeProps = "light" | "dark";
+export type FormSubmit = React.SyntheticEvent;
