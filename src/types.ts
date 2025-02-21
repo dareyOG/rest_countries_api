@@ -26,6 +26,8 @@
   numericCode: string;
 }; */
 
+import React from "react";
+
 export type CountryProps = {
   name: {
     common: string;
@@ -79,5 +81,7 @@ export type ContextType = {
 };
 
 export type FormInput = string;
+
+export type EventProps = React.ChangeEvent;
 
 export type ThemeProps = "light" | "dark";

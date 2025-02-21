@@ -20,7 +20,6 @@ function CountryDetail() {
   };
 
   console.log(country);
-  // bg-gray-50
 
   return (
     <section className="flex h-screen flex-col gap-[3rem] px-[6rem] py-[4rem]">
@@ -50,9 +49,9 @@ function CountryDetail() {
                 <span
                   className={`${theme === "light" ? "" : "text-gray-100"} font-normal`}
                 >
-                  {Object.values(Object?.values(country?.name)?.at(-1))
+                  {/*   {Object.values(Object?.values(country?.name)?.at(-1))
                     ?.map((name) => name.common)
-                    ?.at(0)}
+                    ?.at(0)} */}
                 </span>
               </p>
               <p className="space-x-4">
@@ -103,9 +102,9 @@ function CountryDetail() {
                 <span
                   className={`${theme === "light" ? "" : "text-gray-100"} font-normal`}
                 >
-                  {Object.values(country?.currencies)
+                  {/*  {Object.values(country?.currencies)
                     .map((currency) => currency.name)
-                    .join(", ")}
+                    .join(", ")} */}
                 </span>
               </p>
               <p className="space-x-4">
@@ -113,9 +112,9 @@ function CountryDetail() {
                 <span
                   className={`${theme === "light" ? "" : "text-gray-100"} text-wrap font-normal`}
                 >
-                  {Object.values(country?.languages)
+                  {/*  {Object.values(country?.languages)
                     .map((lang) => lang)
-                    .join(", ")}
+                    .join(", ")} */}
                 </span>
               </p>
             </div>

@@ -10,7 +10,6 @@ function CountriesProvider({ children }: { children: React.ReactNode }) {
 
   const handleToggleTheme = () => {
     setTheme((theme) => (theme === "light" ? "dark" : "light"));
-    console.log(theme);
   };
 
   return (
