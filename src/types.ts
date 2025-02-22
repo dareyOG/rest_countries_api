@@ -1,33 +1,3 @@
-/* export type CountryProps = {
-  name: string;
-  population: number;
-  region: string;
-  capital: string;
-  altSpellings: string[];
-  flag: string;
-  flags: { svg: string; png: string };
-  topLevelDomain: string[];
-  currencies: { name: string; code: string; symbol: string }[];
-  languages: {}[];
-  borders: string[];
-  cioc: string;
-  alpha2Code: string;
-  alpha3Code: string;
-  subregion: string;
-  translations: {};
-  regionalBlocs: {}[];
-  independent: boolean;
-  callingCodes: string[];
-  latlng: number[];
-  demonym: string;
-  area: number;
-  timezones: string[];
-  nativeName: string;
-  numericCode: string;
-}; */
-
-import React from "react";
-
 export type CountryProps = {
   name: {
     common: string;
@@ -43,25 +13,25 @@ export type CountryProps = {
   status: string;
   unMember: boolean;
   currencies: { [key: string]: { name: string; symbol: string } };
-  idd: {};
+  idd: object;
   capital: [];
   altSpellings: [];
   borders: [];
   region: string;
   subregion: string;
-  postalCode: {};
-  languages: {};
-  translations: {};
+  postalCode: object;
+  languages: object;
+  translations: object;
   latlng: number[];
   landlocked: boolean;
   area: number;
-  demonyms: {};
+  demonyms: object;
   flag: string;
-  gini: {};
+  gini: object;
   fifa: string;
   maps: { googleMaps: string; openStreetMaps: string };
   population: number;
-  car: {};
+  car: object;
   timezones: string[];
   continents: string[];
   flags: { png: string; svg: string };
@@ -78,13 +48,11 @@ export type CountriesContextType = {
   countries: Countries;
   isLoading: boolean;
   isError: boolean;
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type ThemeContextType = {
   theme: ThemeProps;
   handleToggleTheme: () => void;
 };
-
-export type FormInput = string;
-
-export type FormSubmit = React.SyntheticEvent;

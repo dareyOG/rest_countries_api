@@ -6,7 +6,7 @@ function Theme() {
   const { theme, handleToggleTheme } = useTheme();
   return (
     <button
-      className="flex items-center gap-[0.5rem] text-[1.2rem] capitalize md:text-[1.4rem]"
+      className="flex items-center gap-[0.5rem] text-[1.2rem] capitalize md:text-[1.5rem]"
       onClick={handleToggleTheme}
     >
       <span className={`${theme === "light" ? "" : "text-gray-50"}`}>

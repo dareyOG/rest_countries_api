@@ -9,20 +9,3 @@ export async function loadCountries() {
     throw new Error("Error fetching data");
   }
 }
-
-export async function searchCountry(name: string) {
-  try {
-    const countryRes = await fetch(
-      `https://restcountries.com/v3.1/name/${name}?fullText=true`,
-    );
-
-    const countryData = countryRes.json();
-    // console.log(countryData);
-
-    return countryData;
-  } catch (error) {
-    console.log(error);
-
-    throw new Error(`Error fetching data for ${name}`);
-  }
-}

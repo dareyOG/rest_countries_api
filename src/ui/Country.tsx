@@ -8,7 +8,7 @@ function Country({ country }: { country: CountryProps }) {
   return (
     <Link to={`/countries/${country.name.common}`}>
       <div
-        className={`grid-rows-[auto, 1fr] grid w-auto cursor-pointer gap-8 rounded-[0.8rem] border ${theme === "light" ? "bg-white md:hover:shadow-gray-100" : "bg-blue-50 md:hover:shadow-gray-100"} border-transparent transition-all duration-500 md:shadow-md md:hover:shadow-lg`}
+        className={`flex w-auto cursor-pointer flex-col gap-[2rem] rounded-[0.8rem] border ${theme === "light" ? "bg-white md:hover:shadow-gray-100" : "bg-blue-50 md:hover:shadow-gray-100"} border-transparent transition-all duration-500 md:shadow-md md:hover:shadow-lg`}
       >
         <img
           src={country.flags.svg}
@@ -16,7 +16,7 @@ function Country({ country }: { country: CountryProps }) {
           className="h-[15rem] min-w-full rounded-t-[0.8rem] object-cover"
         />
         <div
-          className={`grid-rows-[auto, 1fr] grid gap-8 px-10 pb-16 text-[1.4rem] ${theme === "light" ? "" : "text-gray-50"}`}
+          className={`flex flex-col gap-[1.5rem] px-[2.5rem] pb-[4rem] text-[1.4rem] md:text-[1.58rem] ${theme === "light" ? "" : "text-gray-50"}`}
         >
           <h1 className="font-bold">{country.name.common}</h1>
           <div className="font-semibold">

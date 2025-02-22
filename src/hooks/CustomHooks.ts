@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { CountriesContext } from "../context/CountriesContext";
 import { useQuery } from "@tanstack/react-query";
-import { loadCountries, searchCountry } from "../services/apiCountries";
+import { loadCountries } from "../services/apiCountries";
 
 export function useTheme() {
   const context = useContext(ThemeContext);
@@ -19,11 +19,4 @@ export function useCountries() {
 
 export function useGetCountries() {
   return useQuery({ queryKey: ["countries"], queryFn: loadCountries });
-}
-
-export function useGetCountry(name: string) {
-  return useQuery({
-    queryKey: ["country", name],
-    queryFn: () => searchCountry(name),
-  });
 }
