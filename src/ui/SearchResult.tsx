@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCountries } from "../hooks/CustomHooks";
-import { CountryProps } from "../types";
+// import { CountryProps } from "../types";
 import SearchedCountry from "./SearchedCountry";
 
 function SearchResult() {
-  const [searchResult, setSearchResult] = useState<CountryProps[]>([]);
-  const { countries, query } = useCountries();
+  const { countries, query, region, searchResult, setSearchResult } =
+    useCountries();
 
   useEffect(() => {
-    const results = countries.filter((country) =>
-      country.name.common.toLowerCase().includes(query),
-    );
-    setSearchResult(results);
-  }, [countries, query, setSearchResult]);
+    if (query !== "") {
+      const results = countries.filter((country) =>
+        country.name.common.toLowerCase().includes(query.toLowerCase()),
+      );
+      setSearchResult(results);
+    }
+    if (region !== "") {
+      const results = countries.filter((country) =>
+        country.region.toLowerCase().includes(region.toLowerCase()),
+      );
+      setSearchResult(results);
+    }
+  }, [countries, query, region, setSearchResult]);
+
   return (
     <ul className="flex flex-wrap gap-[4.95rem]">
       {searchResult.map((result) => (

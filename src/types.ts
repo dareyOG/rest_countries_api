@@ -49,7 +49,11 @@ export type CountriesContextType = {
   isLoading: boolean;
   isError: boolean;
   query: string;
+  region: string;
+  searchResult: Countries;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
+  setRegion: React.Dispatch<React.SetStateAction<string>>;
+  setSearchResult: React.Dispatch<React.SetStateAction<Countries>>;
 };
 
 export type ThemeContextType = {

@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { useCountries, useTheme } from "../hooks/CustomHooks";
 
 function RegionList() {
-  const [region, setRegion] = useState<string>("");
-  const { isLoading } = useCountries();
+  const { isLoading, region, setRegion } = useCountries();
   const { theme } = useTheme();
 
   return (
@@ -19,7 +17,7 @@ function RegionList() {
       <option value="Africa" className="text-[1.1rem] md:text-[1.6rem]">
         Africa
       </option>
-      <option value="America" className="text-[1.1rem] md:text-[1.6rem]">
+      <option value="Americas" className="text-[1.1rem] md:text-[1.6rem]">
         America
       </option>
       <option value="Asia" className="text-[1.1rem] md:text-[1.6rem]">

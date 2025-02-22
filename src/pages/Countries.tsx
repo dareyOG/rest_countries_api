@@ -5,14 +5,14 @@ import Loader from "../ui/Loader";
 import SearchResult from "../ui/SearchResult";
 
 function Countries() {
-  const { isLoading, countries, query } = useCountries();
+  const { isLoading, countries, query, region } = useCountries();
 
   const sortedCountries = countries?.sort((a, b) =>
     a.name.common.localeCompare(b.name.common),
   );
 
   return (
-    <div className="px-[3rem] py-[4rem] md:px-[6rem]">
+    <div className="min-h-screen px-[3rem] py-[4rem] md:px-[6rem]">
       <SearchCountry />
 
       {isLoading ? (
@@ -22,12 +22,12 @@ function Countries() {
           className={` ${query ? "" : "grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]"} gap-[4.95rem]`}
         >
           {/* grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[6rem] */}
-          {!query ? (
+          {query || region !== "" ? (
+            <SearchResult />
+          ) : (
             sortedCountries.map((country) => (
               <Country country={country} key={country.cca2} />
             ))
-          ) : (
-            <SearchResult />
           )}
         </section>
       )}
