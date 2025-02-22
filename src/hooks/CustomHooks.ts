@@ -2,7 +2,9 @@ import { useContext } from "react";
 
 import { ThemeContext } from "../context/ThemeContext";
 import { CountriesContext } from "../context/CountriesContext";
+
 import { useQuery } from "@tanstack/react-query";
+
 import { loadCountries } from "../services/apiCountries";
 
 export function useTheme() {

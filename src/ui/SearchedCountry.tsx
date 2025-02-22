@@ -16,7 +16,7 @@ function SearchedCountry({ resultCountry }: { resultCountry: CountryProps }) {
           className="h-[15rem] min-w-full rounded-t-[0.8rem] object-cover"
         />
         <div
-          className={`flex flex-col gap-[2rem] px-[2.5rem] pb-[4rem] text-[1.4rem] md:text-[1.6rem] ${theme === "light" ? "" : "text-gray-50"}`}
+          className={`flex flex-col gap-[2rem] px-[2.5rem] pb-[4rem] text-[1.3rem] ${theme === "light" ? "" : "text-gray-50"}`}
         >
           <h1 className="font-bold">{resultCountry.name.common}</h1>
           <div className="font-semibold">
@@ -42,5 +42,3 @@ function SearchedCountry({ resultCountry }: { resultCountry: CountryProps }) {
 }
 
 export default SearchedCountry;
-
-// {`grid-rows-[auto, 1fr] grid w-auto cursor-pointer gap-8 rounded-[0.8rem] border ${theme === "light" ? "bg-white md:hover:shadow-gray-100" : "bg-blue-50 md:hover:shadow-gray-100"} border-transparent transition-all duration-500 md:shadow-md md:hover:shadow-lg`}

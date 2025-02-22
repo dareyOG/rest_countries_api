@@ -18,7 +18,6 @@ function CountryDetail() {
   );
 
   const handleClick = () => {
-    // navigate(-1);
     navigate("/countries");
   };
 

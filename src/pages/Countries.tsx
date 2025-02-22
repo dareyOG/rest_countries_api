@@ -19,9 +19,8 @@ function Countries() {
         <Loader />
       ) : (
         <section
-          className={` ${query ? "" : "grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]"} gap-[4.95rem]`}
+          className={` ${query || region ? "" : "grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]"} gap-[4.95rem]`}
         >
-          {/* grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[6rem] */}
           {query || region !== "" ? (
             <SearchResult />
           ) : (

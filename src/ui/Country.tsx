@@ -16,7 +16,7 @@ function Country({ country }: { country: CountryProps }) {
           className="h-[15rem] min-w-full rounded-t-[0.8rem] object-cover"
         />
         <div
-          className={`flex flex-col gap-[1.5rem] px-[2.5rem] pb-[4rem] text-[1.4rem] md:text-[1.58rem] ${theme === "light" ? "" : "text-gray-50"}`}
+          className={`flex flex-col gap-[1.5rem] px-[2.5rem] pb-[4rem] text-[1.3rem] ${theme === "light" ? "" : "text-gray-50"}`}
         >
           <h1 className="font-bold">{country.name.common}</h1>
           <div className="font-semibold">

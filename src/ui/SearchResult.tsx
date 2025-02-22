@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useCountries } from "../hooks/CustomHooks";
-// import { CountryProps } from "../types";
+
 import SearchedCountry from "./SearchedCountry";
 
 function SearchResult() {
