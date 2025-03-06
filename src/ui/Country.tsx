@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
-import { CountryProps } from "../types";
 import { formatNumber } from "../utils/help";
+import { CountryProps } from "../types";
 
 function Country({ country }: { country: CountryProps }) {
-  console.log(country);
   return (
-    <Link to={`/countries/${country.name}`}>
-      <div className="grid-rows-[auto, 1fr] grid w-auto cursor-pointer gap-8 rounded-[0.8rem] border border-transparent bg-white transition-all duration-500 md:shadow-md md:hover:shadow-[0_2.5px_5px_0] md:hover:shadow-gray-100">
+    <Link to={`/countries/${country.name.common.toLowerCase()}`}>
+      <div className="flex w-[27rem] cursor-pointer flex-col gap-[2rem] rounded-[0.8rem] border border-transparent bg-white transition-all duration-500 dark:bg-blue-50 md:shadow-md md:hover:shadow-lg md:hover:shadow-gray-100 dark:md:hover:shadow-gray-100">
         <img
           src={country.flags.svg}
           alt={`flag of ${country.altSpellings}`}
-          className="h-[15rem] w-full rounded-t-[0.8rem] object-cover"
+          className="h-[15rem] min-w-full rounded-t-[0.8rem] object-cover"
         />
-        <div className="grid-rows-[auto, 1fr] grid gap-8 px-10 pb-16 text-[1.4rem]">
-          <h1 className="font-bold">{country.name}</h1>
+        <div className="flex flex-col gap-[1.5rem] px-[2.5rem] pb-[4rem] text-[1.3rem] dark:text-gray-50">
+          <h1 className="font-bold">{country.name.common}</h1>
           <div className="font-semibold">
             <p className="space-x-2">
               <span>Population:</span>

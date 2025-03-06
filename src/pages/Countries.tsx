@@ -1,26 +1,53 @@
-import { useCountries } from "../context/CountriesContext";
-import Form from "../features/Form";
+import SearchCountry from "../features/SearchCountry/SearchCountry";
+import { useCountries } from "../features/SearchCountry/useCountries";
+import { CountryProps } from "../types";
 import Country from "../ui/Country";
+import Loader from "../ui/Loader";
 
 function Countries() {
-  const { countries } = useCountries();
+  const { isLoading, countries, query, region } = useCountries();
+  // const [searchResults, setSearchResults] = useState<CountriesProps>(countries);
 
-  // const sortedCountries = countries
-  //   .slice()
-  //   .sort((country1, country2) =>
-  //     country1.name.common.localeCompare(country2.name.common),
-  //   );
+  const sortedCountries = countries?.sort((a, b) =>
+    a.name.common.localeCompare(b.name.common),
+  );
+
+  const querySearch = sortedCountries?.filter((country) =>
+    country?.name.common?.toLowerCase().includes(query),
+  );
+
+  const filterSearch = sortedCountries?.filter((country) =>
+    country?.region.toLowerCase().includes(region),
+  );
+
+  const filterQuerySearch = filterSearch?.filter((country) => {
+    country.name.common.toLowerCase().includes(query);
+  });
 
   return (
-    <div className="px-12 py-16 md:px-24">
-      <Form />
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[6rem]">
-        {countries.map((country) => (
-          <Country country={country} key={country.name} />
-        ))}
-      </section>
-    </div>
+    <>
+      <SearchCountry />
+      <>
+        {isLoading && <Loader />}
+
+        {!isLoading && (
+          <section
+            className={`${query ? "flex flex-wrap" : "grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]"} gap-[4.95rem]`}
+          >
+            {(query
+              ? querySearch
+              : region !== "all"
+                ? filterSearch
+                : !query && region === "all"
+                  ? sortedCountries
+                  : filterQuerySearch
+            )?.map((country: CountryProps) => (
+              <Country key={country.cca2} country={country} />
+            ))}
+          </section>
+        )}
+      </>
+    </>
   );
 }
-
 export default Countries;

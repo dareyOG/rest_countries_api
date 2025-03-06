@@ -1,101 +1,142 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useCountries } from "../context/CountriesContext";
-import Border from "../ui/Border";
+
+import { useCountries } from "../features/SearchCountry/useCountries";
+
+import BorderCountry from "../ui/BorderCountry";
+import Loader from "../ui/Loader";
+
 import { formatNumber } from "../utils/help";
+import { HiArrowLongLeft } from "react-icons/hi2";
 
 function CountryDetail() {
-  const { countries } = useCountries();
-  const navigate = useNavigate();
   const { countryName } = useParams();
+  const { countries, isLoading } = useCountries();
+  const navigate = useNavigate();
 
-  // search country
-  const country = countries.find((country) => country.name === countryName);
+  const country = countries
+    ?.filter((country) =>
+      country.name.common.toLowerCase().includes(countryName as string),
+    )
+    ?.at(0);
 
-  console.log(country);
-  // console.log(Object.values(country?.currencies));
-
-  const handleClick = () => {
-    // navigate(-1);
-    navigate("/countries");
-  };
+  const handleGoBack = () => navigate(-1);
 
   return (
-    <section className="flex flex-col gap-[5rem] bg-gray-50 px-[6rem] py-[4rem]">
-      <button
-        onClick={handleClick}
-        className="flex max-w-fit items-center gap-3 rounded-md border-2 border-gray-50 bg-white px-[2rem] py-[0.5rem] text-gray-100 shadow-2xl transition-all duration-300 ease-in hover:bg-gray-100 hover:text-white hover:shadow-md hover:shadow-blue-50"
-      >
-        <span>&larr;</span>
-        <span className="text-[1.2rem]">Back</span>
-      </button>
-      <div className="flex flex-col gap-[10rem] md:flex-row">
-        <img
-          src={country?.flags.svg}
-          alt={`flag of ${country?.name}`}
-          className="max-w-[50rem] object-cover md:h-[35rem] md:w-[80rem]"
-        />
-        <div className="flex flex-col gap-[3rem] py-[3rem]">
-          {/* grid grid-flow-row grid-cols-2 gap-[2rem] py-[2.5rem] */}
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <section className="flex flex-col gap-[3rem]">
+          <button
+            onClick={handleGoBack}
+            className="flex max-w-fit items-center gap-x-3 rounded-md bg-gray-50 px-[2rem] py-[0.5rem] text-gray-100 shadow-md transition-all duration-300 ease-linear hover:bg-gray-100 hover:text-gray-50 hover:shadow-gray-100 dark:bg-blue-50 dark:text-gray-50 dark:hover:bg-gray-50 dark:hover:text-blue-50"
+          >
+            <HiArrowLongLeft />
+            <span className="text-[1.2rem] md:text-[1.5rem]">Back</span>
+          </button>
 
-          <h2 className="max-w-fit text-[2.5rem] font-bold">{country?.name}</h2>
-          <div className="flex gap-[2.5rem] text-[1.6rem] font-bold">
-            <div className="font-medium">
-              <p className="space-x-4">
-                <span>Native Name:</span>
-                <span>{country?.nativeName}</span>
-              </p>
-              <p className="space-x-1">
-                <span>Population:</span>
-                <span className="font-normal">
-                  {formatNumber(country?.population as number)}
-                </span>{" "}
-              </p>
-              <p className="space-x-2.5">
-                <span> Region:</span>
-                <span className="font-normal">{country?.region}</span>
-              </p>
-              <p className="space-x-2.5">
-                <span>Sub Region:</span>
-                <span className="font-normal">{country?.subregion}</span>
-              </p>
-              <p className="space-x-2.5">
-                <span>capital:</span>
-                <span className="font-normal">{country?.capital}</span>
-              </p>
-            </div>
+          <div className="flex flex-col gap-[3.5rem] dark:text-gray-50 lg:flex-row lg:items-center lg:justify-center lg:gap-[8rem]">
+            <img
+              src={country?.flags.svg}
+              alt={`flag of ${country?.name.common}`}
+              className="w-auto object-cover lg:max-h-[35rem] lg:max-w-[50rem]"
+            />
+            <div className="flex flex-col gap-[4.5rem] md:py-[3.5rem]">
+              <h2 className="max-w-fit text-[2rem] font-bold md:text-[2.5rem] lg:text-start">
+                {country?.name.common}
+              </h2>
+              <div className="flex flex-col gap-[3rem] text-nowrap text-[1.4rem] font-bold md:flex-row md:text-[1.8rem]">
+                <div className="text-nowrap font-medium">
+                  <p className="space-x-4">
+                    <span>Native Name:</span>
+                    <span className="font-normal dark:text-gray-100">
+                      {country?.name &&
+                        country?.name &&
+                        typeof country.name !== "string" &&
+                        Object.values(Object.values(country.name)?.at(-1) || {})
+                          ?.map((name) => name.common)
+                          ?.at(0)}
+                    </span>
+                  </p>
+                  <p className="space-x-4">
+                    <span>Population:</span>
+                    <span className="font-normal dark:text-gray-100">
+                      {formatNumber(country?.population as number)}
+                    </span>{" "}
+                  </p>
+                  <p className="space-x-4">
+                    <span> Region:</span>
+                    <span className="font-normal dark:text-gray-100">
+                      {country?.region}
+                    </span>
+                  </p>
+                  <p className="space-x-4">
+                    <span>Sub Region:</span>
+                    <span className="font-normal dark:text-gray-100">
+                      {country?.subregion}
+                    </span>
+                  </p>
+                  <p className="space-x-4">
+                    <span>Capital:</span>
+                    <span className="font-normal dark:text-gray-100">
+                      {country?.capital.at(0)}
+                    </span>
+                  </p>
+                </div>
 
-            <div className="font-medium">
-              <p className="space-x-2.5">
-                <span> Top Level Domain:</span>
-                <span className="font-normal">
-                  {country?.topLevelDomain.at(0)}
+                <div className="font-medium">
+                  <p className="space-x-4">
+                    <span> Top Level Domain:</span>
+                    <span className="font-normal dark:text-gray-100">
+                      {country?.tld.at(0)}
+                    </span>
+                  </p>
+                  <p className="space-x-4">
+                    <span>Currencies: </span>
+                    <span className="font-normal dark:text-gray-100">
+                      {country?.currencies &&
+                        Object.values(
+                          country.currencies as {
+                            [key: string]: { name: string };
+                          },
+                        )
+                          .map((currency) => currency.name)
+                          .join(", ")}
+                    </span>
+                  </p>
+                  <p className="space-x-4">
+                    <span>Languages:</span>
+                    <span className="font-normal dark:text-gray-100">
+                      {country?.languages &&
+                        Object.values(country?.languages).join(", ")}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className={`flex ${(country?.borders?.length ?? 0) <= 4 ? "flex-row gap-x-8" : "flex-col gap-3"} font-semibold md:flex-row`}
+              >
+                <span className="flex items-center text-nowrap text-[1.2rem] md:text-[1.4rem]">
+                  Border Countries:
                 </span>
-              </p>
-              <p className="space-x-2.5">
-                <span>Currencies: </span>
-                <span className="font-normal">
-                  {country?.currencies.at(0)?.name}
-                </span>
-              </p>
-              <p className="space-x-2.5">
-                <span>Languages:</span>
-                <span className="font-normal">{"languages"}</span>
-              </p>
+
+                {country?.borders ? (
+                  <ul className="flex flex-wrap gap-4">
+                    {country?.borders?.map((border: string) => (
+                      <BorderCountry border={border} key={border} />
+                    ))}
+                  </ul>
+                ) : (
+                  <span className="flex items-center text-[1rem] font-light italic dark:text-gray-100 md:text-[1.4rem]">
+                    No border countries
+                  </span>
+                )}
+              </div>
             </div>
           </div>
-          <div className="flex gap-3 font-semibold">
-            <span className="text-nowrap text-[1.6rem]">Border Countries:</span>
-            <span>
-              <ul className="flex flex-wrap gap-8">
-                {country?.borders?.map((border) => (
-                  <Border border={border} key={border} />
-                ))}
-              </ul>
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 }
 

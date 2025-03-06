@@ -1,13 +1,14 @@
-import { Audio } from "react-loader-spinner";
+import { MoonLoader } from "react-spinners";
+import { useTheme } from "../features/ThemeEffect/useTheme";
+
 function Loader() {
+  const { theme } = useTheme();
   return (
-    <Audio
-      height="80"
-      width="80"
-      radius="9"
-      color="green"
-      ariaLabel="three-dots-loading"
-    />
+    <div className="flex h-screen items-center justify-center">
+      <MoonLoader
+        color={`${theme === "dark" ? "hsl(0, 0%, 98%)" : "hsl(209, 23%, 22%)"}`}
+      />
+    </div>
   );
 }
 

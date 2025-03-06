@@ -1,46 +1,29 @@
-import { createContext, useContext, useState } from "react";
-import { ContextType } from "../types";
-import { countries } from "../../public/data/data";
+import { createContext, useState } from "react";
+import { CountriesContextType, RegionProps } from "../types";
+import { useGetCountries } from "../hooks/useGetCountries";
 
-const CountriesContext = createContext<ContextType | null>(null);
-
-// const baseURL = "https://restcountries.com/v3.1";
+const CountriesContext = createContext<CountriesContextType | null>(null);
 
 function CountriesProvider({ children }: { children: React.ReactNode }) {
-  const [isLoading, _setIsLoading] = useState(false);
-
-  // console.log(countries);
-
-  /*  useEffect(function () {
-    async function loadCountries() {
-      setIsLoading(true);
-      try {
-        const countriesRes = await fetch(`${baseURL}/all`);
-        const countriesData = await countriesRes.json();
-
-        setCountries(countriesData);
-      } catch (error) {
-        if (error) throw new Error("Error fetching data");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadCountries();
-  }, []); */
-
-  // search countries
+  const { data: countries, isError, isLoading } = useGetCountries();
+  const [query, setQuery] = useState<string>("");
+  const [region, setRegion] = useState<RegionProps>("all");
 
   return (
-    <CountriesContext.Provider value={{ countries, isLoading }}>
+    <CountriesContext.Provider
+      value={{
+        countries,
+        isLoading,
+        isError,
+        query,
+        region,
+        setQuery,
+        setRegion,
+      }}
+    >
       {children}
     </CountriesContext.Provider>
   );
 }
 
-function useCountries() {
-  const context = useContext(CountriesContext);
-  if (!context) throw new Error("context is out of scope");
-  return context;
-}
-
-export { CountriesProvider, useCountries };
+export { CountriesProvider, CountriesContext };
