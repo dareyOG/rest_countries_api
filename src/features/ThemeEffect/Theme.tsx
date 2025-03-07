@@ -1,6 +1,5 @@
 import { useTheme } from "./useTheme";
-import { HiMoon } from "react-icons/hi2";
-import { HiSun } from "react-icons/hi2";
+import { HiMoon, HiSun } from "react-icons/hi2";
 
 function Theme() {
   const { theme, handleToggleTheme } = useTheme();

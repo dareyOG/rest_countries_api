@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.1",
+    "@tanstack/react-query": "^5.67.1",
+    "@tanstack/react-query-devtools": "^5.67.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
     "react-loader-spinner": "^6.1.6",
-    "react-router-dom": "^6.29.0"
+    "react-router-dom": "^6.29.0",
+    "react-spinners": "^0.15.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

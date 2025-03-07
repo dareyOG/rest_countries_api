@@ -6,9 +6,11 @@ function BorderCountry({ border }: { border: string }) {
   const { countries } = useCountries();
 
   // search border country
-  const borderCountry = countries?.find(
-    (country: CountryProps) => country.cca3 === border,
+  const borderCountry = countries?.find((country: CountryProps) =>
+    country.cca3.includes(border),
   );
+
+  console.log(borderCountry);
 
   return (
     <Link
