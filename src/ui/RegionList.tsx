@@ -1,8 +1,16 @@
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useCountries } from "../features/SearchCountry/useCountries";
 import { RegionProps } from "../types";
 
 function RegionList() {
   const { isLoading, region, setRegion } = useCountries();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    searchParams.set("region", region);
+    setSearchParams(searchParams);
+  }, [region, setSearchParams, searchParams]);
 
   return (
     <select

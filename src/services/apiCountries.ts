@@ -5,6 +5,6 @@ export async function getCountries() {
     const countriesData = countriesRes.json();
     return countriesData;
   } catch (error) {
-    if (error) throw new Error("Error fetching data");
+    throw new Error((error as Error).message);
   }
 }

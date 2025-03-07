@@ -5,6 +5,8 @@ import { useCountries } from "../features/SearchCountry/useCountries";
 function SearchBar() {
   const { isLoading, query, setQuery } = useCountries();
 
+  // console.log(query);
+
   return (
     <div className="relative flex items-center dark:text-gray-50">
       <span className="absolute left-[1.5rem] z-10">
