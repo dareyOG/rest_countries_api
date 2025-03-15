@@ -24,9 +24,11 @@ function Country({ country }: { country: CountryProps }) {
               <span>Region:</span>
               <span className="font-normal">{country.region}</span>
             </p>
-            <p className="space-x-2">
+            <p className="flex space-x-2">
               <span>Capital:</span>
-              <span className="font-normal">{country.capital}</span>
+              <span className="font-normal">
+                {country.capital?.join(", ") ?? `Not available`}
+              </span>
             </p>
           </div>
         </div>

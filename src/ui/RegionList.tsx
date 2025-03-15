@@ -7,10 +7,19 @@ function RegionList() {
   const { isLoading, region, setRegion } = useCountries();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const currentPage =
+    searchParams.get("page") &&
+    (region === "americas" || region === "africa" || region === "europe")
+      ? Number(searchParams.get("page"))
+      : 1;
+
   useEffect(() => {
     searchParams.set("region", region);
+    if (searchParams.get("region") !== "all")
+      searchParams.set("page", currentPage.toString());
+
     setSearchParams(searchParams);
-  }, [region, setSearchParams, searchParams]);
+  }, [region, setSearchParams, searchParams, currentPage]);
 
   return (
     <select

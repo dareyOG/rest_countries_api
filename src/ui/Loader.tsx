@@ -4,7 +4,7 @@ import { useTheme } from "../features/ThemeEffect/useTheme";
 function Loader() {
   const { theme } = useTheme();
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex items-center justify-center">
       <MoonLoader
         color={`${theme === "dark" ? "hsl(0, 0%, 98%)" : "hsl(209, 23%, 22%)"}`}
       />

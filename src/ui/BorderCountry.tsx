@@ -10,7 +10,7 @@ function BorderCountry({ border }: { border: string }) {
     country.cca3.includes(border),
   );
 
-  console.log(borderCountry);
+  // console.log(borderCountry);
 
   return (
     <Link

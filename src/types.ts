@@ -66,3 +66,8 @@ export type ThemeContextType = {
   theme: ThemeProps;
   handleToggleTheme: () => void;
 };
+
+export type PaginationProps = {
+  countriesCount: number;
+  sortedCountries: object[];
+};

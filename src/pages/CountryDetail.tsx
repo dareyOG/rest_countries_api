@@ -19,6 +19,8 @@ function CountryDetail() {
     )
     ?.at(0);
 
+  console.log(country);
+
   const handleGoBack = () => navigate(-1);
 
   return (
@@ -43,19 +45,20 @@ function CountryDetail() {
             />
             <div className="flex flex-col gap-[4.5rem] md:py-[3.5rem]">
               <h2 className="max-w-fit text-[2rem] font-bold md:text-[2.5rem] lg:text-start">
-                {country?.name.common}
+                {country?.name.common ?? `Not available`}
               </h2>
               <div className="flex flex-col gap-[3rem] text-nowrap text-[1.4rem] font-bold md:flex-row md:text-[1.8rem]">
                 <div className="text-nowrap font-medium">
                   <p className="space-x-4">
                     <span>Native Name:</span>
                     <span className="font-normal dark:text-gray-100">
-                      {country?.name &&
+                      {(country?.name &&
                         country?.name &&
                         typeof country.name !== "string" &&
                         Object.values(Object.values(country.name)?.at(-1) || {})
                           ?.map((name) => name.common)
-                          ?.at(0)}
+                          ?.at(0)) ??
+                        `Not available`}
                     </span>
                   </p>
                   <p className="space-x-4">
@@ -73,13 +76,13 @@ function CountryDetail() {
                   <p className="space-x-4">
                     <span>Sub Region:</span>
                     <span className="font-normal dark:text-gray-100">
-                      {country?.subregion}
+                      {country?.subregion ?? `Not available`}
                     </span>
                   </p>
                   <p className="space-x-4">
                     <span>Capital:</span>
                     <span className="font-normal dark:text-gray-100">
-                      {country?.capital.at(0)}
+                      {country?.capital?.join(", ") ?? `Not available`}
                     </span>
                   </p>
                 </div>
@@ -88,27 +91,29 @@ function CountryDetail() {
                   <p className="space-x-4">
                     <span> Top Level Domain:</span>
                     <span className="font-normal dark:text-gray-100">
-                      {country?.tld.at(0)}
+                      {country?.tld.at(0) ?? `Not available`}
                     </span>
                   </p>
                   <p className="space-x-4">
                     <span>Currencies: </span>
                     <span className="font-normal dark:text-gray-100">
-                      {country?.currencies &&
+                      {(country?.currencies &&
                         Object.values(
                           country.currencies as {
                             [key: string]: { name: string };
                           },
                         )
                           .map((currency) => currency.name)
-                          .join(", ")}
+                          .join(", ")) ??
+                        `Not available`}
                     </span>
                   </p>
                   <p className="space-x-4">
                     <span>Languages:</span>
-                    <span className="font-normal dark:text-gray-100">
-                      {country?.languages &&
-                        Object.values(country?.languages).join(", ")}
+                    <span className="text-wrap font-normal dark:text-gray-100">
+                      {(country?.languages &&
+                        Object.values(country?.languages).join(", ")) ??
+                        `Not available`}
                     </span>
                   </p>
                 </div>
