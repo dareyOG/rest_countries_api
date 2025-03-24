@@ -1,25 +1,34 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import { useCountries } from "../features/SearchCountry/useCountries";
+
 import { RegionProps } from "../types";
 
-function RegionList() {
+function RegionList({
+  currentPage,
+  pages: totalPages,
+}: {
+  currentPage: number;
+  pages: number;
+}) {
   const { isLoading, region, setRegion } = useCountries();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentPage =
-    searchParams.get("page") &&
-    (region === "americas" || region === "africa" || region === "europe")
-      ? Number(searchParams.get("page"))
-      : 1;
-
   useEffect(() => {
     searchParams.set("region", region);
-    if (searchParams.get("region") !== "all")
-      searchParams.set("page", currentPage.toString());
+    if (searchParams.get("region") !== "all" && currentPage >= totalPages)
+      searchParams.set("page", totalPages.toString());
+    else {
+      if (searchParams.get("page") === "0") searchParams.delete("page");
+      searchParams.set(
+        "page",
+        currentPage === 0 ? "1" : currentPage.toString(),
+      );
+    }
 
     setSearchParams(searchParams);
-  }, [region, setSearchParams, searchParams, currentPage]);
+  }, [currentPage, region, searchParams, setSearchParams, totalPages]);
 
   return (
     <select

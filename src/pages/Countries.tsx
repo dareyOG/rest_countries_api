@@ -1,11 +1,13 @@
 import { useSearchParams } from "react-router-dom";
-import SearchCountry from "../features/SearchCountry/SearchCountry";
 import { useCountries } from "../features/SearchCountry/useCountries";
-import { CountryProps, RegionProps } from "../types";
+import SearchCountry from "../features/SearchCountry/SearchCountry";
+
 import Country from "../ui/Country";
 import Loader from "../ui/Loader";
 import Pagination from "../ui/Pagination";
+
 import { PAGE_SIZE } from "../utils/constants";
+import { CountryProps, RegionProps } from "../types";
 
 function Countries() {
   const { isLoading, countries, query, region } = useCountries();
@@ -16,7 +18,9 @@ function Countries() {
     a.name.common.localeCompare(b.name.common),
   );
 
-  // get region
+  // console.log(sortedCountries);
+
+  // get Region
   const regionSearch = searchParams.get("region");
 
   if (regionSearch !== "all")
@@ -37,17 +41,15 @@ function Countries() {
       return startsWithQuery && includeQuery;
     });
 
-  // data size
-  // const countriesCount = filterSearch?.length;
-  // const countriesCount = matchedQuery?.length;
-  // const countriesCount = sortedCountries?.length;
-
-  const isQueryFound = sortedCountries?.map((country) =>
-    // country.region.includes(region) &&
+  const queryResults = sortedCountries?.filter((country) =>
     country.name.common.toLowerCase().startsWith(query.toLowerCase()),
   );
 
-  // pagination
+  // Pagination
+  const pages = Math.ceil(sortedCountries?.length / PAGE_SIZE);
+
+  // console.log(pages);
+
   const currentPage = searchParams.get("page")
     ? Number(searchParams.get("page"))
     : 1;
@@ -55,64 +57,41 @@ function Countries() {
   const indexOfLastCountry = currentPage * PAGE_SIZE;
   const indexOfFirstCountry = indexOfLastCountry - PAGE_SIZE;
 
-  const currentCountries = sortedCountries?.slice(
+  const currentCountries = queryResults?.slice(
     indexOfFirstCountry,
     indexOfLastCountry,
   );
 
-  // console.log(
-  //   currentPage,
-  //   sortedCountries?.length <= PAGE_SIZE ? "one page" : "multipage",
-  //   currentCountries,
-  // );
-
   return (
     <>
-      <SearchCountry />
+      <SearchCountry currentPage={currentPage} pages={pages} />
       <>
         {isLoading && <Loader />}
 
-        {!isLoading && !isQueryFound?.length && (
+        {!isLoading && !queryResults?.length && (
           <p className="flex items-center justify-center text-[2rem] text-blue-200 dark:text-gray-50">
-            {`country ${query.toUpperCase()} not found`}
+            {region === "all"
+              ? `country ${query.toUpperCase()} not found`
+              : `country ${query.toUpperCase()} not found in ${region.toUpperCase()}`}
             🚫
           </p>
         )}
 
-        <section
-          className={`${query && region ? "flex flex-wrap" : "grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"} gap-[4.95rem]`}
-        >
+        <section className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-[4.95rem]">
           {currentCountries?.map((country: CountryProps) => (
             <Country key={country.cca2} country={country} />
           ))}
         </section>
       </>
 
-      {currentCountries && (
+      {currentCountries && queryResults.length && (
         <Pagination
-          countriesCount={sortedCountries?.length}
+          countriesCount={queryResults?.length}
           sortedCountries={sortedCountries}
+          currentPage={currentPage}
         />
       )}
     </>
   );
 }
 export default Countries;
-
-/*   const filterSearch = currentCountries?.filter((country) =>
-    regionSearch === "all"
-      ? sortedCountries
-      : country?.region.toLowerCase().includes(regionSearch as RegionProps),
-  ); */
-
-/*   const matchedQuery = filterSearch?.filter((country) => {
-    const startsWithQuery = country?.name.common
-      .toLowerCase()
-      .startsWith(query?.toLowerCase());
-
-    const includeQuery = country?.name.common
-      .toLowerCase()
-      .includes(query?.toLowerCase());
-
-    return startsWithQuery && includeQuery;
-  }); */

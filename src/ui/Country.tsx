@@ -5,7 +5,7 @@ import { CountryProps } from "../types";
 function Country({ country }: { country: CountryProps }) {
   return (
     <Link to={`/countries/${country.name.common.toLowerCase()}`}>
-      <div className="flex w-[27rem] cursor-pointer flex-col gap-[2rem] rounded-[0.8rem] border border-transparent bg-white transition-all duration-500 dark:bg-blue-50 md:shadow-md md:hover:shadow-lg md:hover:shadow-gray-100 dark:md:hover:shadow-gray-100">
+      <div className="flex min-w-[27rem] cursor-pointer flex-col gap-[2rem] rounded-[0.8rem] border border-transparent bg-white transition-all duration-500 dark:bg-blue-50 md:shadow-md md:hover:shadow-lg md:hover:shadow-gray-100 dark:md:hover:shadow-gray-100">
         <img
           src={country.flags.svg}
           alt={`flag of ${country.altSpellings}`}

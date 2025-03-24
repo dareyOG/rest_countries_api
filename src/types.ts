@@ -70,4 +70,5 @@ export type ThemeContextType = {
 export type PaginationProps = {
   countriesCount: number;
   sortedCountries: object[];
+  currentPage: number;
 };

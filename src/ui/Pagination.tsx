@@ -1,55 +1,53 @@
 import { useSearchParams } from "react-router-dom";
+import { useCountries } from "../features/SearchCountry/useCountries";
+
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { PAGE_SIZE } from "../utils/constants";
 import { PaginationProps } from "../types";
-import { useCountries } from "../features/SearchCountry/useCountries";
 
-function Pagination({ countriesCount, sortedCountries }: PaginationProps) {
+function Pagination({
+  countriesCount,
+  sortedCountries,
+  currentPage,
+}: PaginationProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const { region } = useCountries();
 
-  const currentPage = searchParams.get("page")
-    ? Number(searchParams.get("page"))
-    : 1;
-
-  // const pageCount =
-  //   region === "all" ? Math.ceil(countriesCount / PAGE_SIZE) : 1;
-
-  const pageCount =
+  const totalPages =
     region === "all"
       ? Math.ceil(countriesCount / PAGE_SIZE)
-      : region === "americas" || region === "africa" || region === "europe"
-        ? Math.ceil(Number(sortedCountries.length) / PAGE_SIZE)
-        : 1;
+      : Math.ceil(Number(sortedCountries.length) / PAGE_SIZE);
 
   const handlePrevious = () => {
     const previous = currentPage === 1 ? currentPage : currentPage - 1;
 
-    searchParams.set("page", previous.toLocaleString());
+    searchParams.set("page", previous.toString());
     setSearchParams(searchParams);
   };
 
   const handleNext = () => {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
+    const next = currentPage === totalPages ? currentPage : currentPage + 1;
 
-    searchParams.set("page", next.toLocaleString());
+    searchParams.set("page", next.toString());
     setSearchParams(searchParams);
   };
 
   // if (pageCount <= 1) return null;
-  // if (countriesCount <= PAGE_SIZE && pageCount <= 1) return null;
+  // if (countriesCount <= PAGE_SIZE && totalPages <= 1) return null;
 
   return (
-    <footer className="fixed bottom-0 right-0 mt-20 flex w-full items-center justify-center bg-blue-50 px-24 py-6 text-[1.5rem] text-gray-50 opacity-60 dark:bg-gray-50 dark:text-blue-200 md:justify-between">
-      <p className="hidden md:block [&_span]:font-bold">
+    <footer className="fixed bottom-0 right-0 mt-20 flex w-full items-center justify-center bg-blue-200 px-24 py-6 text-[1.5rem] text-white opacity-85 dark:bg-white dark:text-blue-200 md:justify-between">
+      <p className="hidden font-normal md:block [&_span]:font-bold">
         Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
         <span>
-          {currentPage === pageCount ? countriesCount : currentPage * PAGE_SIZE}
+          {currentPage === totalPages
+            ? countriesCount
+            : currentPage * PAGE_SIZE}
         </span>{" "}
         of <span>{countriesCount}</span> results
       </p>
 
-      <div className="flex gap-16">
+      <div className="flex gap-16 font-semibold">
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1}
@@ -61,14 +59,13 @@ function Pagination({ countriesCount, sortedCountries }: PaginationProps) {
           <span>Previous</span>
         </button>
 
-        <p className="md:hidden">
-          <span>
-            {currentPage}/{pageCount}
-          </span>
-        </p>
+        <span className="rounded-full bg-gray-50 p-1 font-bold text-blue-200 dark:bg-blue-200 dark:text-gray-50">
+          {currentPage}/{totalPages}
+        </span>
+
         <button
           onClick={handleNext}
-          disabled={currentPage === pageCount}
+          disabled={currentPage === totalPages}
           className="flex items-center justify-between disabled:invisible [&_span:nth-child(2)]:transition-transform [&_span:nth-child(2)]:duration-500 [&_span:nth-child(2)]:hover:translate-x-2"
         >
           <span>Next</span>

@@ -19,7 +19,7 @@ function CountryDetail() {
     )
     ?.at(0);
 
-  console.log(country);
+  // console.log(country);
 
   const handleGoBack = () => navigate(-1);
 
@@ -31,7 +31,7 @@ function CountryDetail() {
         <section className="flex flex-col gap-[3rem]">
           <button
             onClick={handleGoBack}
-            className="flex max-w-fit items-center gap-x-3 rounded-md bg-gray-50 px-[2rem] py-[0.5rem] text-gray-100 shadow-md transition-all duration-300 ease-linear hover:bg-gray-100 hover:text-gray-50 hover:shadow-gray-100 dark:bg-blue-50 dark:text-gray-50 dark:hover:bg-gray-50 dark:hover:text-blue-50"
+            className="flex max-w-fit items-center gap-x-3 rounded-md bg-gray-50 px-[2rem] py-[0.5rem] text-gray-100 shadow-md transition-all duration-[400ms] ease-linear hover:bg-gray-100 hover:text-gray-50 hover:shadow-gray-100 dark:bg-blue-50 dark:text-gray-50 dark:hover:bg-gray-50 dark:hover:text-blue-50"
           >
             <HiArrowLongLeft />
             <span className="text-[1.2rem] md:text-[1.5rem]">Back</span>

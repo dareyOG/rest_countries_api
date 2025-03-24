@@ -15,7 +15,7 @@ function BorderCountry({ border }: { border: string }) {
   return (
     <Link
       to={`/countries/${borderCountry?.name.common?.toLowerCase()}`}
-      className="min-w-8 cursor-pointer rounded-[0.5rem] border border-transparent bg-white px-6 py-2 text-[1rem] font-normal text-blue-100 shadow-md transition-all duration-300 ease-in hover:bg-gray-100 hover:text-white hover:shadow-2xl hover:shadow-blue-50 dark:bg-blue-50 dark:text-gray-50 dark:hover:bg-gray-50 dark:hover:text-gray-100 dark:hover:shadow-gray-50 md:text-[1.5rem] md:hover:bg-blue-50 md:hover:text-gray-50 dark:md:hover:bg-gray-50 dark:md:hover:text-blue-50"
+      className="min-w-8 cursor-pointer rounded-[0.5rem] border border-transparent bg-white px-6 py-2 text-[1rem] font-normal text-blue-100 shadow-md transition-all duration-[400ms] ease-in hover:bg-blue-100 hover:text-white hover:shadow-2xl hover:shadow-blue-50 dark:bg-blue-100 dark:text-gray-50 dark:hover:bg-gray-50 dark:hover:text-gray-100 dark:hover:shadow-gray-50 md:text-[1.5rem] md:hover:bg-blue-50 md:hover:text-gray-50 dark:md:hover:bg-gray-50 dark:md:hover:text-blue-50"
     >
       {borderCountry?.name.common}
     </Link>
